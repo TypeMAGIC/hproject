@@ -2,7 +2,7 @@
 
 int Check_Condition(int x)
 {
-	if (100 <= x < 1000)
+	if (100 <= x && x < 1000)
 	{
 		return 1;
 	}
@@ -27,24 +27,32 @@ int main()
 	int arr_num[10] = { 0 };
 	int end_result[10] = { 0 };
 
-	printf("100 이상, 1000 미만의 수를 3개 입력하세요.\n\n");
-	printf("첫 번째 숫자 입력(100 ~ 999) = ");
-	scanf_s("%d", &num[0]);
-	printf("두 번째 숫자 입력(100 ~ 999) = ");
-	scanf_s("%d", &num[1]);
-	printf("세 번째 숫자 입력(100 ~ 999) = ");
-	scanf_s("%d", &num[2]);
+	
 
 
-	for (i = 0; i < 3; i++)
+	while (i < 3)
 	{
-		j = Check_Condition(num[i]);
-		if (j == 0)
+		if (i == 0)
 		{
-			break; 
+			printf("\n100 이상, 1000 미만의 수를 3개 입력하세요.\n\n");
+			printf("첫 번째 숫자 입력(100 ~ 999) = ");
+			scanf_s("%d", &num[0]);
+			printf("두 번째 숫자 입력(100 ~ 999) = ");
+			scanf_s("%d", &num[1]);
+			printf("세 번째 숫자 입력(100 ~ 999) = ");
+			scanf_s("%d", &num[2]);
 		}
-		else{}
+		if (100 <= num[i] && num[i] <= 999)
+		{
+			i += 1;
+		}
+		else
+		{
+			i = 0;
+			continue;
+		}
 	}
+
 
 	result = num[0] * num[1] * num[2];
 	printf("\n\n곱한 결과 = %d\n\n", result);

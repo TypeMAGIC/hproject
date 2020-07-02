@@ -6,15 +6,15 @@ int main()
 	int j = 0;
 	int n = 0;
 
-	int score[100] = { 0 };
-	int grade[100] = { 0 };
-	char students[100][20] = { " " };
+	int score[100] = { 0, };
+	int grade[100] = { 0, };
+	char students[100][20] = { " ", };
 
 	//printf("입력할 학생 수는 몇 명인가요? \n");	보여주기 프린트
 	scanf_s("%d", &n);
 	
 
-	if (3 <= n <= 50)
+	if (3 <= n && n <= 50)
 	{
 		for (i = 0; i < n; i++)
 		{
@@ -33,8 +33,7 @@ int main()
 			{
 				grade[i] += 1;
 			}
-			else
-			{ }
+			else{ }
 		}
 		
 	}
