@@ -1,4 +1,4 @@
-[도언][오후 9:01] #include <stdio.h>
+#include <stdio.h>
 
 int main()
 {
@@ -32,4 +32,20 @@ int main()
         else
         {
             for (int i = 1; i > -2; i--)
-                ...
+            {
+                for (int j = 1; j > -2; j--)
+                {
+                    if (bomb[y - i][x - j] != 0)
+                    {
+                        num += 1;
+                    }
+                    else {}
+                }
+            }
+            printf("%d", num);
+        }
+    }
+    else {}
+
+    return 0;
+}
