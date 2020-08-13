@@ -30,13 +30,11 @@ Node* push(int value)
 	}
 	else
 	{
-		Node* tail_prev = (Node*)malloc(sizeof(Node));
-		tail_prev->value = tail->value;
-		tail_prev->next = tail;
-		tail_prev->prev = tail->prev;
+		Node* tail2 = (Node*)malloc(sizeof(Node));
+		tail2 = tail;
+		tail2->next = tail;
 		tail->value = value;
-		tail->prev = tail_prev;
-		tail->prev->next = tail_prev;
+		tail->prev = tail2;
 		return tail;
 	}
 }
@@ -50,8 +48,7 @@ Node* pop()
 //스택의 모든 노드들을 없앱니다.
 void clear()
 {
-	Node* free_Node = (Node*)malloc(sizeof(Node));
-	free_Node = head;
+	Node* free_Node = head;
 	while (free_Node)
 	{
 		free(free_Node);
@@ -69,9 +66,8 @@ int front()
 //제거된 노드를 반환합니다.
 Node* remove(int value)
 {
-	Node* search = (Node*)malloc(sizeof(Node));
-	search = head;
-	Node* save = (Node*)malloc(sizeof(Node));
+	Node* search = head;
+	Node* save;
 
 	while (search)
 	{
@@ -82,13 +78,11 @@ Node* remove(int value)
 			{
 				head = head->next;
 				head->prev = NULL;
-				search = search->next;
 			}
 			else if (search->next == NULL)
 			{
 				tail = tail->prev;
 				tail->next = NULL;
-				search = search->prev;
 			}
 			else
 			{
@@ -96,6 +90,7 @@ Node* remove(int value)
 				search->prev->next = search->next;	
 			}
 			free(search);
+			break;
 		}
 		search = search->next;
 	}
@@ -105,19 +100,18 @@ Node* remove(int value)
 //node의 뒤에 새로운 값을 추가합니다.v
 void insert(Node* prev_node, Node* new_node)
 {
-	prev_node->next = new_node;
-	prev_node->next->prev = new_node;
 	new_node->next = prev_node->next;
 	new_node->prev = prev_node;
+	prev_node->next = new_node;
+	prev_node->next->prev = new_node;	
 }
 
 //value와 일치하는 노드를 찾고 새로운 노드로 교체합니다.
 //교체되는 노드를 반환합니다.
 Node* replace(int value, Node* new_node)
 {
-	Node* search = (Node*)malloc(sizeof(Node));
-	search = head;
-	Node* save = (Node*)malloc(sizeof(Node));
+	Node* search = head;
+	Node* save;
 	
 	while (search)
 	{
@@ -134,8 +128,7 @@ Node* replace(int value, Node* new_node)
 //큐에서 value와 일치하는 노드를 찾아 반환합니다.
 Node* find(int value)
 {
-	Node* search = (Node*)malloc(sizeof(Node));
-	search = head;
+	Node* search = head;
 	while (1)
 	{
 		if (search->value == value)
